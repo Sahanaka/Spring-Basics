@@ -1,11 +1,22 @@
-public class Triangle
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+import java.util.List;
+
+public class Triangle /*implements InitializingBean, DisposableBean*/
 {
     private String type; // Type of the triangle
     private int height;  // Height of the triangle
 
-    Point pointA; // Three points of the triangle
-    Point pointB;
-    Point pointC;
+    private Point pointA; // Three points of the triangle
+    private Point pointB;
+    private Point pointC;
+
+    private List<Point> points; // List of points
+
+    public List<Point> getPoints() { return points; };
+
+    public void setPoints(List<Point> points) { this.points = points; };
 
     public Triangle() // Default constructor should always exist
     {
@@ -71,6 +82,36 @@ public class Triangle
     {
         System.out.println("Point A = (" + getPointA().getXcor() + " , " + getPointA().getYcor() + ")");
         System.out.println("Point B = (" + getPointB().getXcor() + " , " + getPointB().getYcor() + ")");
-        System.out.println("Point C = (" + getPointC().getXcor() + " , " + getPointC().getYcor() + ")");
+        System.out.println("Point C = (" + getPointC().getXcor() + " , " + getPointC().getYcor() + ")\n");
+    }
+
+    public void printList()
+    {
+        for (Point i : points)
+            System.out.println("Point  = (" + i.getXcor() + " , " + i.getYcor() + ")");
+    }
+
+    /*@Override
+    public void afterPropertiesSet() throws Exception // Runs every time a bean is initialized
+    {
+        System.out.println("Initializing bean");
+    }
+
+    @Override
+    public void destroy() throws Exception
+    {
+        System.out.println("Destroying the bean");
+    }*/
+
+    // Same can be achieved by creating custom methods and implementing in the xml file
+
+    public void initBean()
+    {
+        System.out.println("Initializing the bean");
+    }
+
+    public void deleteBean()
+    {
+        System.out.println("Deleting the bean");
     }
 }

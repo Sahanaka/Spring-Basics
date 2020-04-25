@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
-<beans>
-    <bean id = "triangle" class = "Triangle">
+<beans default-init-method = "initBean" default-destroy-method = "deleteBean"> <!-- Global configuration of init and destroy methods -->
 
+    <bean id = "triangle" class = "Triangle" init-method = "initBean" destroy-method = "deleteBean"> <!-- This can be done to all the beans by configuring globally-->
         <property name = "type" value = "Equilateral"/>
         <constructor-arg index = "0" value = "Equilateral"/>
         <constructor-arg index = "1" value = "10"/>
-
     </bean>
 
     <!-- Triangle with points (0,0) , (10,5) , (7,8) -->
 
     <bean id = "trianglewithpoints" class = "Triangle">
-
         <property name = "pointA" ref = "point1"/>
         <property name = "pointB" ref = "point2"/>
         <property name = "pointC" ref = "point3"/>
-
     </bean>
 
     <bean id = "point1" class = "Point">
-
         <property name = "xcor" value = "0"/>
         <property name = "ycor" value = "0"/>
-
     </bean>
 
     <bean id = "point2" class = "Point">
-
         <property name = "xcor" value = "10"/>
         <property name = "ycor" value = "5"/>
-
     </bean>
 
     <bean id = "point3" class = "Point">
-
         <property name = "xcor" value = "7"/>
         <property name = "ycor" value = "8"/>
-
     </bean>
 
+    <!-- List of points implementation -->
+
+    <bean id = "lists" class = "Triangle">
+        <property name = "points">
+                <list>
+                    <ref bean = "point1"/>
+                    <ref bean = "point2"/>
+                    <ref bean = "point3"/>
+                </list>
+        </property>
+    </bean>
+
+    <bean class = "DisplayBeanPostProcessor"/>
+    <bean class = "MyBeanFactoryPostProcessor"/>
 
 </beans>
