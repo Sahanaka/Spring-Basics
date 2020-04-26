@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<!--<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       default-init-method = "initBean" default-destroy-method = "deleteBean">
 
-<beans default-init-method = "initBean" default-destroy-method = "deleteBean"> <!-- Global configuration of init and destroy methods -->
+
+<!--<beans default-init-method = "initBean" default-destroy-method = "deleteBean"> &lt;!&ndash; Global configuration of init and destroy methods &ndash;&gt;-->
 
     <bean id = "triangle" class = "Triangle" init-method = "initBean" destroy-method = "deleteBean"> <!-- This can be done to all the beans by configuring globally-->
         <property name = "type" value = "Equilateral"/>
@@ -23,6 +32,7 @@
     </bean>
 
     <bean id = "point2" class = "Point">
+        <qualifier value = "center"/>
         <property name = "xcor" value = "10"/>
         <property name = "ycor" value = "5"/>
     </bean>
@@ -46,5 +56,13 @@
 
     <bean class = "DisplayBeanPostProcessor"/>
     <bean class = "MyBeanFactoryPostProcessor"/>
+
+    <!--Circle bean-->
+    <bean id = "circle" class = "Circle">
+    </bean>
+
+<!--    <bean class = "org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>-->
+
+    <context:annotation-config/>
 
 </beans>

@@ -57,6 +57,10 @@ public class Main
         System.out.println("Lists");
         triangle5.printList();
 
+        // Coding to interfaces
+        Shapes shape = (Shapes) context.getBean("circle");
+        shape.draw();
+
         System.exit(0);
     }
 }

@@ -3,7 +3,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 import java.util.List;
 
-public class Triangle /*implements InitializingBean, DisposableBean*/
+public class Triangle implements Shapes/*implements InitializingBean, DisposableBean*/
 {
     private String type; // Type of the triangle
     private int height;  // Height of the triangle
